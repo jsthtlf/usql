@@ -10,11 +10,11 @@ import (
 	"io"
 	"strings"
 
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	infos "github.com/jsthtlf/usql/drivers/metadata/informationschema"
+	mymeta "github.com/jsthtlf/usql/drivers/metadata/mysql"
 	_ "github.com/marcboeker/go-duckdb/v2" // DRIVER
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/metadata"
-	infos "github.com/xo/usql/drivers/metadata/informationschema"
-	mymeta "github.com/xo/usql/drivers/metadata/mysql"
 )
 
 type metaReader struct {

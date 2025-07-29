@@ -8,9 +8,9 @@ import (
 	"context"
 	"strconv"
 
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/sqlite3/sqshared"
 	"github.com/mattn/go-sqlite3" // DRIVER
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/sqlite3/sqshared"
 )
 
 func init() {

@@ -9,11 +9,11 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/jsthtlf/usql/drivers/metadata"
+	"github.com/jsthtlf/usql/drivers/metadata/postgres"
+	_ "github.com/jsthtlf/usql/drivers/postgres"
 	dt "github.com/ory/dockertest/v3"
 	dc "github.com/ory/dockertest/v3/docker"
-	"github.com/xo/usql/drivers/metadata"
-	"github.com/xo/usql/drivers/metadata/postgres"
-	_ "github.com/xo/usql/drivers/postgres"
 )
 
 type Database struct {

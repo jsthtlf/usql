@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/jsthtlf/usql/drivers"
 	"github.com/thda/tds" // DRIVER: tds
-	"github.com/xo/usql/drivers"
 )
 
 func init() {

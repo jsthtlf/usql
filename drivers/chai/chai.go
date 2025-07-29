@@ -5,7 +5,7 @@ package chai
 
 import (
 	_ "github.com/chaisql/chai/driver" // DRIVER
-	"github.com/xo/usql/drivers"
+	"github.com/jsthtlf/usql/drivers"
 )
 
 func init() {

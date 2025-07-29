@@ -8,7 +8,7 @@ import (
 	"regexp"
 
 	_ "github.com/exasol/exasol-driver-go" // DRIVER
-	"github.com/xo/usql/drivers"
+	"github.com/jsthtlf/usql/drivers"
 )
 
 func init() {

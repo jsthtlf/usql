@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/xo/usql/env"
+	"github.com/jsthtlf/usql/env"
 )
 
 func TestAppend(t *testing.T) {

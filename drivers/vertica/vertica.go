@@ -15,10 +15,10 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/jsthtlf/usql/drivers"
 	vertica "github.com/vertica/vertica-sql-go" // DRIVER
 	"github.com/vertica/vertica-sql-go/logger"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
 )
 
 func init() {

@@ -12,15 +12,15 @@ import (
 	"github.com/go-git/go-billy/v5"
 	"github.com/go-git/go-billy/v5/memfs"
 	"github.com/go-git/go-billy/v5/osfs"
+	"github.com/jsthtlf/usql/env"
+	"github.com/jsthtlf/usql/handler"
+	"github.com/jsthtlf/usql/rline"
+	"github.com/jsthtlf/usql/text"
 	"github.com/mattn/go-isatty"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/env"
-	"github.com/xo/usql/handler"
-	"github.com/xo/usql/rline"
-	"github.com/xo/usql/text"
 )
 
 // ContextExecutor is the command context.

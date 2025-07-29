@@ -3,8 +3,8 @@ package internal
 import (
 	"runtime"
 
+	"github.com/jsthtlf/usql/drivers"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
 )
 
 func init() {

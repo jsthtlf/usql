@@ -17,12 +17,12 @@ import (
 	"testing"
 	"time"
 
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	_ "github.com/jsthtlf/usql/internal"
 	dt "github.com/ory/dockertest/v3"
 	dc "github.com/ory/dockertest/v3/docker"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/metadata"
-	_ "github.com/xo/usql/internal"
 )
 
 type Database struct {

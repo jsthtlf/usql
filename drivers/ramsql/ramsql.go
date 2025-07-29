@@ -4,8 +4,8 @@
 package ql
 
 import (
+	"github.com/jsthtlf/usql/drivers"
 	_ "github.com/proullon/ramsql/driver" // DRIVER
-	"github.com/xo/usql/drivers"
 )
 
 func init() {

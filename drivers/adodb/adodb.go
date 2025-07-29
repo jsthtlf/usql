@@ -11,9 +11,9 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/jsthtlf/usql/drivers"
 	_ "github.com/mattn/go-adodb" // DRIVER
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
 )
 
 func init() {

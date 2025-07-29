@@ -5,8 +5,6 @@ import (
 	"database/sql"
 	"flag"
 	"fmt"
-	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
 	"log"
 	"os"
 	"path/filepath"
@@ -14,12 +12,14 @@ import (
 	"time"
 
 	dt "github.com/ory/dockertest/v3"
-	"github.com/xo/usql/drivers/clickhouse"
-	"github.com/xo/usql/drivers/metadata"
+	"github.com/xo/dburl"
 	"github.com/yookoala/realpath"
 
-	_ "github.com/xo/usql/drivers/csvq"
-	_ "github.com/xo/usql/drivers/moderncsqlite"
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/clickhouse"
+	_ "github.com/jsthtlf/usql/drivers/csvq"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	_ "github.com/jsthtlf/usql/drivers/moderncsqlite"
 )
 
 // db is the database connection.

@@ -11,8 +11,8 @@ import (
 	"time"
 
 	syslocale "github.com/jeandeaual/go-locale"
+	"github.com/jsthtlf/usql/text"
 	"github.com/xo/terminfo"
-	"github.com/xo/usql/text"
 )
 
 // Variables handles the standard, print, and connection variables.

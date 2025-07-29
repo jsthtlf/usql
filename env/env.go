@@ -17,9 +17,9 @@ import (
 	"unicode"
 	"unicode/utf8"
 
+	"github.com/jsthtlf/usql/text"
 	"github.com/kenshaw/rasterm"
 	"github.com/xo/dburl/passfile"
-	"github.com/xo/usql/text"
 )
 
 // vars are environment variables.

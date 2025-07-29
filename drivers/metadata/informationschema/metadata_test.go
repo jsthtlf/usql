@@ -16,13 +16,13 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/google/go-cmp/cmp"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	infos "github.com/jsthtlf/usql/drivers/metadata/informationschema"
+	_ "github.com/jsthtlf/usql/drivers/postgres"
 	_ "github.com/microsoft/go-mssqldb" // DRIVER: sqlserver
 	dt "github.com/ory/dockertest/v3"
 	dc "github.com/ory/dockertest/v3/docker"
 	_ "github.com/trinodb/trino-go-client/trino"
-	"github.com/xo/usql/drivers/metadata"
-	infos "github.com/xo/usql/drivers/metadata/informationschema"
-	_ "github.com/xo/usql/drivers/postgres"
 )
 
 type Database struct {

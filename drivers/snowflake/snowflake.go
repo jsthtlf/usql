@@ -7,12 +7,12 @@ import (
 	"io"
 	"strconv"
 
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	infos "github.com/jsthtlf/usql/drivers/metadata/informationschema"
+	"github.com/jsthtlf/usql/env"
 	"github.com/snowflakedb/gosnowflake" // DRIVER
 	"github.com/xo/tblfmt"
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/metadata"
-	infos "github.com/xo/usql/drivers/metadata/informationschema"
-	"github.com/xo/usql/env"
 )
 
 func init() {

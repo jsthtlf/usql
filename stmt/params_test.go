@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/xo/usql/env"
-	"github.com/xo/usql/text"
+	"github.com/jsthtlf/usql/env"
+	"github.com/jsthtlf/usql/text"
 )
 
 func TestParamsGetRaw(t *testing.T) {

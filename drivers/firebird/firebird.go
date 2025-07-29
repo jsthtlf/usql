@@ -6,8 +6,8 @@ package firebird
 import (
 	"context"
 
+	"github.com/jsthtlf/usql/drivers"
 	_ "github.com/nakagami/firebirdsql" // DRIVER: firebirdsql
-	"github.com/xo/usql/drivers"
 )
 
 func init() {

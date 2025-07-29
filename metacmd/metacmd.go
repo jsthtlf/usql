@@ -11,14 +11,14 @@ import (
 	"strings"
 	"time"
 
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	"github.com/jsthtlf/usql/env"
+	"github.com/jsthtlf/usql/rline"
+	"github.com/jsthtlf/usql/stmt"
+	"github.com/jsthtlf/usql/text"
 	"github.com/mattn/go-runewidth"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/metadata"
-	"github.com/xo/usql/env"
-	"github.com/xo/usql/rline"
-	"github.com/xo/usql/stmt"
-	"github.com/xo/usql/text"
 )
 
 // Handler is the shared interface for a command handler.

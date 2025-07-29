@@ -10,9 +10,9 @@ import (
 	"unicode"
 
 	"github.com/gohxs/readline"
-	"github.com/xo/usql/drivers/metadata"
-	"github.com/xo/usql/env"
-	"github.com/xo/usql/text"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	"github.com/jsthtlf/usql/env"
+	"github.com/jsthtlf/usql/text"
 )
 
 const (

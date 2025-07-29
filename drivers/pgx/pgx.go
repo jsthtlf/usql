@@ -14,11 +14,11 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/stdlib" // DRIVER
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	pgmeta "github.com/jsthtlf/usql/drivers/metadata/postgres"
+	"github.com/jsthtlf/usql/text"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/metadata"
-	pgmeta "github.com/xo/usql/drivers/metadata/postgres"
-	"github.com/xo/usql/text"
 )
 
 func init() {

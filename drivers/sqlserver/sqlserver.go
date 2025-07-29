@@ -12,10 +12,10 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/metadata"
 	mssql "github.com/microsoft/go-mssqldb"
 	sqlserver "github.com/microsoft/go-mssqldb" // DRIVER
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/metadata"
 
 	// needed for azuresql authentication, named pipes, and shared memory transport protocols
 	_ "github.com/microsoft/go-mssqldb/azuread"

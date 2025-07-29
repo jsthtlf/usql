@@ -7,9 +7,9 @@ import (
 	"io"
 
 	_ "github.com/datafuselabs/databend-go" // DRIVER
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/metadata"
-	infos "github.com/xo/usql/drivers/metadata/informationschema"
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	infos "github.com/jsthtlf/usql/drivers/metadata/informationschema"
 )
 
 func init() {

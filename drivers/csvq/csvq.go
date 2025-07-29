@@ -9,10 +9,10 @@ import (
 	"os"
 	"strings"
 
+	"github.com/jsthtlf/usql/drivers"
 	"github.com/mithrandie/csvq-driver" // DRIVER
 	"github.com/mithrandie/csvq/lib/query"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
 )
 
 func init() {

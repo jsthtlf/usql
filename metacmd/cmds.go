@@ -14,10 +14,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/env"
+	"github.com/jsthtlf/usql/text"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/env"
-	"github.com/xo/usql/text"
 )
 
 // Quit is a General meta command (\q \quit). Quits the application.

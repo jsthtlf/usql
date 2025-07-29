@@ -6,8 +6,8 @@ package athena
 import (
 	"context"
 
+	"github.com/jsthtlf/usql/drivers"
 	_ "github.com/uber/athenadriver/go" // DRIVER: awsathena
-	"github.com/xo/usql/drivers"
 )
 
 func init() {

@@ -16,8 +16,8 @@ import (
 
 	cql "github.com/MichaelS11/go-cql-driver" // DRIVER: cql
 	"github.com/gocql/gocql"
+	"github.com/jsthtlf/usql/drivers"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
 )
 
 func init() {

@@ -13,11 +13,11 @@ import (
 	"os"
 	"strings"
 
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/handler"
-	"github.com/xo/usql/internal"
-	"github.com/xo/usql/rline"
-	"github.com/xo/usql/text"
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/handler"
+	"github.com/jsthtlf/usql/internal"
+	"github.com/jsthtlf/usql/rline"
+	"github.com/jsthtlf/usql/text"
 )
 
 func main() {

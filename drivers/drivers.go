@@ -17,11 +17,11 @@ import (
 	"github.com/alecthomas/chroma/v2"
 	"github.com/alecthomas/chroma/v2/lexers"
 	"github.com/gohxs/readline"
+	"github.com/jsthtlf/usql/drivers/completer"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	"github.com/jsthtlf/usql/stmt"
+	"github.com/jsthtlf/usql/text"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers/completer"
-	"github.com/xo/usql/drivers/metadata"
-	"github.com/xo/usql/stmt"
-	"github.com/xo/usql/text"
 )
 
 // DB is the common interface for database operations, compatible with

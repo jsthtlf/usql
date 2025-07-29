@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/xo/usql/drivers/metadata"
+	"github.com/jsthtlf/usql/drivers/metadata"
 )
 
 type metaReader struct {

@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	_ "github.com/godror/godror" // DRIVER
-	"github.com/xo/usql/drivers/oracle/orshared"
+	"github.com/jsthtlf/usql/drivers/oracle/orshared"
 )
 
 func init() {

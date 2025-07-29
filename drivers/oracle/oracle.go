@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/jsthtlf/usql/drivers/oracle/orshared"
 	_ "github.com/sijms/go-ora/v2" // DRIVER
-	"github.com/xo/usql/drivers/oracle/orshared"
 )
 
 func init() {

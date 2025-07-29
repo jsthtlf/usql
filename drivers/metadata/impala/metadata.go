@@ -4,8 +4,8 @@ import (
 	"context"
 	"database/sql"
 
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/metadata"
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/metadata"
 
 	driver "github.com/sclgo/impala-go"
 )

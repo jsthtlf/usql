@@ -6,8 +6,8 @@ package presto
 import (
 	"context"
 
+	"github.com/jsthtlf/usql/drivers"
 	_ "github.com/prestodb/presto-go-client/presto" // DRIVER
-	"github.com/xo/usql/drivers"
 )
 
 func init() {

@@ -10,10 +10,10 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/jsthtlf/usql/drivers/metadata"
+	"github.com/jsthtlf/usql/drivers/sqlserver"
 	dt "github.com/ory/dockertest/v3"
 	dc "github.com/ory/dockertest/v3/docker"
-	"github.com/xo/usql/drivers/metadata"
-	"github.com/xo/usql/drivers/sqlserver"
 )
 
 type Database struct {

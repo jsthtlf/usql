@@ -8,9 +8,9 @@ import (
 	"database/sql"
 	"errors"
 
+	"github.com/jsthtlf/usql/drivers"
+	meta "github.com/jsthtlf/usql/drivers/metadata/impala"
 	"github.com/sclgo/impala-go" // DRIVER
-	"github.com/xo/usql/drivers"
-	meta "github.com/xo/usql/drivers/metadata/impala"
 )
 
 func init() {

@@ -10,9 +10,9 @@ import (
 	"io"
 	"strconv"
 
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/sqlite3/sqshared"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/sqlite3/sqshared"
 	"modernc.org/sqlite" // DRIVER
 )
 

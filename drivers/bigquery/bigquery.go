@@ -4,7 +4,7 @@
 package bigquery
 
 import (
-	"github.com/xo/usql/drivers"
+	"github.com/jsthtlf/usql/drivers"
 	_ "gorm.io/driver/bigquery/driver" // DRIVER
 )
 

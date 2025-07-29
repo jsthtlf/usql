@@ -9,11 +9,11 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	orameta "github.com/jsthtlf/usql/drivers/metadata/oracle"
+	"github.com/jsthtlf/usql/env"
 	"github.com/xo/dburl"
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/metadata"
-	orameta "github.com/xo/usql/drivers/metadata/oracle"
-	"github.com/xo/usql/env"
 )
 
 // Register registers an oracle driver.

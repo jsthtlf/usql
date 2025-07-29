@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/xo/usql/drivers"
-	"github.com/xo/usql/drivers/metadata"
-	"github.com/xo/usql/text"
+	"github.com/jsthtlf/usql/drivers"
+	"github.com/jsthtlf/usql/drivers/metadata"
+	"github.com/jsthtlf/usql/text"
 )
 
 // InformationSchema metadata reader

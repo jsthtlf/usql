@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/jsthtlf/usql/text"
 	"github.com/kenshaw/colors"
-	"github.com/xo/usql/text"
 )
 
 type ChartConfig struct {
