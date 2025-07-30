@@ -19,7 +19,6 @@ var sections = []string{
 	"Input/Output",
 	"Control/Conditional",
 	"Transaction",
-	"Operating System/Environment",
 }
 
 // descs are the command descriptions.
@@ -34,7 +33,6 @@ func init() {
 		{
 			{Quit, `q`, ``, `quit ` + text.CommandName + ``, false, false},
 			{Quit, `quit`, ``, `alias for \q`, true, false},
-			{Copyright, `copyright`, ``, `show usage and distribution terms for ` + text.CommandName + ``, false, false},
 			{Drivers, `drivers`, ``, `show database drivers available to ` + text.CommandName + ``, false, false},
 		},
 		// Help
@@ -71,8 +69,6 @@ func init() {
 			{Crosstab, `crosstab`, `[(OPTIONS)] [COLUMNS]`, `execute query and display results in crosstab`, false, false},
 			{Crosstab, `crosstabview`, ``, `alias for \crosstab`, true, false},
 			{Crosstab, `xtab`, ``, `alias for \crosstab`, true, false},
-			{Chart, `chart`, `CHART [(OPTIONS)]`, `execute query and display results as a chart`, false, false},
-			{Watch, `watch`, `[(OPTIONS)] [INTERVAL]`, `execute query every specified interval`, false, false},
 		},
 		// Query Buffer
 		{
@@ -145,13 +141,6 @@ func init() {
 			{Transact, `commit`, ``, `commit current transaction`, false, false},
 			{Transact, `rollback`, ``, `rollback (abort) current transaction`, false, false},
 			{Transact, `abort`, ``, `alias for \rollback`, true, false},
-		},
-		// Operating System/Environment
-		{
-			{Shell, `!`, `[COMMAND]`, `execute command in shell or start interactive shell`, false, false},
-			{Chdir, `cd`, `[DIR]`, `change the current working directory`, false, false},
-			{Getenv, `getenv`, `VARNAME ENVVAR`, `fetch environment variable`, false, false},
-			{Setenv, `setenv`, `NAME [VALUE]`, `set or unset environment variable`, false, false},
 		},
 	}
 	cmds = make(map[string]func(*Params) error)

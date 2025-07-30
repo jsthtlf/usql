@@ -14,8 +14,6 @@
 *.zip
 *.out
 
-*.sqlite3
-*.sqlite3-journal
 *.duckdb
 *.wal
 

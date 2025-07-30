@@ -12,7 +12,6 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/jsthtlf/usql/drivers"
 	"github.com/jsthtlf/usql/env"
@@ -28,21 +27,6 @@ import (
 //	quit
 func Quit(p *Params) error {
 	p.Option.Quit = true
-	return nil
-}
-
-// Copyright is a General meta command (\copyright). Writes the
-// application's copyright message to the output.
-//
-// Descs:
-//
-//	copyright	show usage and distribution terms for {{CommandName}}
-func Copyright(p *Params) error {
-	stdout := p.Handler.IO().Stdout()
-	if typ := env.TermGraphics(); typ.Available() {
-		typ.Encode(stdout, text.Logo)
-	}
-	fmt.Fprintln(stdout, text.Copyright)
 	return nil
 }
 
@@ -243,68 +227,6 @@ func Crosstab(p *Params) error {
 		if !ok {
 			break
 		}
-	}
-	return nil
-}
-
-// Chart is a Query View meta command (\chart). Executes the active query on
-// the open database connection and displays results in a chart view.
-//
-// Descs:
-//
-//	chart	CHART [(OPTIONS)]	execute query and display results as a chart
-func Chart(p *Params) error {
-	p.Option.Exec = ExecChart
-	if p.Option.Params == nil {
-		p.Option.Params = make(map[string]string, 1)
-	}
-	params, err := p.All(true)
-	if err != nil {
-		return err
-	}
-	for i := 0; i < len(params); i++ {
-		param := params[i]
-		if param == "help" {
-			p.Option.Params["help"] = ""
-			return nil
-		}
-		equal := strings.IndexByte(param, '=')
-		switch {
-		case equal == -1 && i >= len(params)-1:
-			return text.ErrWrongNumberOfArguments
-		case equal == -1:
-			i++
-			p.Option.Params[param] = params[i]
-		default:
-			p.Option.Params[param[:equal]] = param[equal+1:]
-		}
-	}
-	return nil
-}
-
-// Watch is a Query View meta command (\watch). Executes (and re-executes) the
-// active query on the open database connection until canceled by the user.
-//
-// Descs:
-//
-//	watch	[(OPTIONS)] [INTERVAL]	execute query every specified interval
-func Watch(p *Params) error {
-	p.Option.Exec = ExecWatch
-	p.Option.Watch = 2 * time.Second
-	switch s, ok, err := p.NextOK(true); {
-	case err != nil:
-		return err
-	case ok:
-		d, err := time.ParseDuration(s)
-		if err != nil {
-			if f, err := strconv.ParseFloat(s, 64); err == nil {
-				d = time.Duration(f * float64(time.Second))
-			}
-		}
-		if d == 0 {
-			return text.ErrInvalidWatchDuration
-		}
-		p.Option.Watch = d
 	}
 	return nil
 }
@@ -987,73 +909,4 @@ func Conditional(p *Params) error {
 	case "endif":
 	}
 	return nil
-}
-
-// Shell is a Operating System/Environment meta command (\!). Executes a
-// command using the Operating System/Environment's shell.
-//
-// Descs:
-//
-//	!	[COMMAND]	execute command in shell or start interactive shell
-func Shell(p *Params) error {
-	return env.Shell(p.Raw())
-}
-
-// Chdir is a Operating System/Environment meta command (\cd). Changes the
-// current directory for the Operating System/Environment.
-//
-// Descs:
-//
-//	cd	[DIR]	change the current working directory
-func Chdir(p *Params) error {
-	dir, err := p.Next(true)
-	if err != nil {
-		return err
-	}
-	return env.Chdir(p.Handler.User(), dir)
-}
-
-// Getenv is a Operating System/Environment meta command (\getenv). Sets the
-// application's variable value returned from the Operating
-// System/Environment's variables.
-//
-// Descs:
-//
-//	getenv	VARNAME ENVVAR	fetch environment variable
-func Getenv(p *Params) error {
-	n, err := p.Next(true)
-	switch {
-	case err != nil:
-		return err
-	case n == "":
-		return text.ErrMissingRequiredArgument
-	}
-	v, err := p.Next(true)
-	switch {
-	case err != nil:
-		return err
-	case v == "":
-		return text.ErrMissingRequiredArgument
-	}
-	value, _ := env.Getenv(v)
-	return env.Vars().Set(n, value)
-}
-
-// Setenv is a Operating System/Environment meta command (\setenv). Sets (or
-// unsets) a Operating System/Environment variable. Environment variables set
-// this way will be passed to any child processes.
-//
-// Descs:
-//
-//	setenv	NAME [VALUE]	set or unset environment variable
-func Setenv(p *Params) error {
-	n, err := p.Next(true)
-	if err != nil {
-		return err
-	}
-	v, err := p.Next(true)
-	if err != nil {
-		return err
-	}
-	return os.Setenv(n, v)
 }

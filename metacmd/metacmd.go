@@ -241,10 +241,6 @@ const (
 	ExecExec
 	// ExecCrosstab indicates execution using crosstabview (\crosstabview).
 	ExecCrosstab
-	// ExecChart indicates execution using chart (\chart).
-	ExecChart
-	// ExecWatch indicates repeated execution with a fixed time interval.
-	ExecWatch
 )
 
 // desc wraps a meta command description.

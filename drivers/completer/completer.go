@@ -134,7 +134,6 @@ func NewDefaultCompleter(opts ...Option) readline.AutoCompleter {
 			`\connect`,
 			`\conninfo`,
 			`\copy`,
-			`\copyright`,
 			`\cset`,
 			`\d+`,
 			`\dS+`,

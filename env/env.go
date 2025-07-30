@@ -56,17 +56,6 @@ func Getenv(keys ...string) (string, bool) {
 	return "", false
 }
 
-// Chdir changes the current working directory to the specified path, or to the
-// user's home directory if path is not specified.
-func Chdir(u *user.User, path string) error {
-	if path != "" {
-		path = passfile.Expand(u.HomeDir, path)
-	} else {
-		path = u.HomeDir
-	}
-	return os.Chdir(path)
-}
-
 // OpenFile opens a file for read (os.O_RDONLY), returning the full, expanded
 // path of the file. Callers are responsible for closing the returned file.
 func OpenFile(u *user.User, path string) (string, *os.File, error) {
@@ -194,25 +183,6 @@ func Getshell() (string, string) {
 		}
 	}
 	return shell, param
-}
-
-// Shell runs s as a shell. When s is empty the user's SHELL or COMSPEC is
-// used. See Getshell.
-func Shell(s string) error {
-	shell, param := Getshell()
-	if shell == "" {
-		return text.ErrNoShellAvailable
-	}
-	s = strings.TrimSpace(s)
-	var params []string
-	if s != "" {
-		params = append(params, param, s)
-	}
-	// drop to shell
-	cmd := exec.Command(shell, params...)
-	cmd.Stdin, cmd.Stdout, cmd.Stderr = os.Stdin, os.Stdout, os.Stderr
-	_ = cmd.Run()
-	return nil
 }
 
 // Pipe starts a command and returns its input for writing.

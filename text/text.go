@@ -3,10 +3,7 @@
 package text
 
 import (
-	"bytes"
 	_ "embed"
-	"image"
-	"image/png"
 	"io"
 	"regexp"
 	"strings"
@@ -14,44 +11,37 @@ import (
 
 // Various usql text bits.
 var (
-	CommandName              = `usql`
-	CommandVersion           = `0.0.0-dev`
-	PassfileName             = CommandName + `pass`
-	ConfigName               = "config"
-	Banner                   = `the universal command-line interface for SQL databases`
-	CommandHelpHint          = `hint: try "` + CommandName + ` --help" for more information.`
-	GoInstallHint            = "\ntry:\n\n  go install -tags 'most %s' github.com/jsthtlf/usql@%s\n\n"
-	NotConnected             = `(not connected)`
-	HelpPrefix               = `help`
-	QuitPrefix               = `quit`
-	ExitPrefix               = `exit`
-	WelcomeDesc              = `Type "` + HelpPrefix + `" for help.`
-	QueryBufferEmpty         = `Query buffer is empty.`
-	QueryBufferReset         = `Query buffer reset (cleared).`
-	InvalidCommand           = `Invalid command \%s. Try \? for help.`
-	ExtraArgumentIgnored     = `\%s: extra argument %q ignored`
-	MissingRequiredArg       = `\%s: missing required argument`
-	Copyright                = CommandName + ", " + Banner + ".\n\n" + License
-	RowCount                 = `(%d rows)`
-	AvailableDrivers         = `Available Drivers:`
-	ConnInfo                 = `Connected with driver %s (%s)`
-	EnterPassword            = `Enter password: `
-	EnterPreviousPassword    = `Enter previous password: `
-	PasswordsDoNotMatch      = `Passwords do not match, trying again ...`
-	NewPassword              = `Enter new password: `
-	ConfirmPassword          = `Confirm password: `
-	PasswordChangeFailed     = `\password for %q failed: %v`
-	CouldNotSetVariable      = `could not set variable %q`
-	ChartParseFailed         = `\chart: invalid argument for %q: %v`
-	CommandIgnoredUseEndIf   = `%s command ignored; use \endif or %s to exit current \if block`
-	UnrecognizedValueForCond = `unrecognized value %q for "\%s expression": Boolean expected`
-	// PasswordChangeSucceeded = `\password succeeded for %q`
-	HelpDesc          string
-	HelpDescShort     = `Use \? for help or press control-C to clear the input buffer.`
-	HelpBanner        = `You are using ` + CommandName + ", " + Banner + `.`
-	HelpCommandPrefix = `Type:  `
-	HelpCommands      = [][]string{
-		{`copyright`, `for distribution terms`},
+	CommandName           = `usql`
+	CommandVersion        = `0.0.0-dev`
+	PassfileName          = CommandName + `pass`
+	ConfigName            = "config"
+	Banner                = `the universal command-line interface for SQL databases`
+	CommandHelpHint       = `hint: try "` + CommandName + ` --help" for more information.`
+	GoInstallHint         = "\ntry:\n\n  go install -tags 'most %s' github.com/jsthtlf/usql@%s\n\n"
+	NotConnected          = `(not connected)`
+	HelpPrefix            = `help`
+	QuitPrefix            = `quit`
+	ExitPrefix            = `exit`
+	WelcomeDesc           = `Type "` + HelpPrefix + `" for help.`
+	QueryBufferEmpty      = `Query buffer is empty.`
+	QueryBufferReset      = `Query buffer reset (cleared).`
+	InvalidCommand        = `Invalid command \%s. Try \? for help.`
+	ExtraArgumentIgnored  = `\%s: extra argument %q ignored`
+	MissingRequiredArg    = `\%s: missing required argument`
+	AvailableDrivers      = `Available Drivers:`
+	ConnInfo              = `Connected with driver %s (%s)`
+	EnterPassword         = `Enter password: `
+	EnterPreviousPassword = `Enter previous password: `
+	PasswordsDoNotMatch   = `Passwords do not match, trying again ...`
+	NewPassword           = `Enter new password: `
+	ConfirmPassword       = `Confirm password: `
+	PasswordChangeFailed  = `\password for %q failed: %v`
+	CouldNotSetVariable   = `could not set variable %q`
+	HelpDesc              string
+	HelpDescShort         = `Use \? for help or press control-C to clear the input buffer.`
+	HelpBanner            = `You are using ` + CommandName + ", " + Banner + `.`
+	HelpCommandPrefix     = `Type:  `
+	HelpCommands          = [][]string{
 		//{`h`, `for help with SQL commands`},
 		{`?`, `for help with ` + CommandName + ` commands`},
 		{`g`, `or terminate with semicolon to execute query`},
@@ -171,19 +161,4 @@ func Usage(w io.Writer, banner bool) {
 		_, _ = w.Write([]byte(Short() + "\n\n"))
 	}
 	_, _ = w.Write([]byte(UsageString()))
-}
-
-// Logo is the logo.
-var Logo image.Image
-
-// LogoPng is the embedded logo.
-//
-//go:embed logo.png
-var LogoPng []byte
-
-func init() {
-	var err error
-	if Logo, err = png.Decode(bytes.NewReader(LogoPng)); err != nil {
-		panic(err)
-	}
 }

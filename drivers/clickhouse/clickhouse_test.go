@@ -17,9 +17,7 @@ import (
 
 	"github.com/jsthtlf/usql/drivers"
 	"github.com/jsthtlf/usql/drivers/clickhouse"
-	_ "github.com/jsthtlf/usql/drivers/csvq"
 	"github.com/jsthtlf/usql/drivers/metadata"
-	_ "github.com/jsthtlf/usql/drivers/moderncsqlite"
 )
 
 // db is the database connection.

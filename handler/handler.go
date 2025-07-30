@@ -35,15 +35,12 @@ import (
 	"github.com/jsthtlf/usql/drivers/metadata"
 	"github.com/jsthtlf/usql/env"
 	"github.com/jsthtlf/usql/metacmd"
-	"github.com/jsthtlf/usql/metacmd/charts"
 	"github.com/jsthtlf/usql/rline"
 	"github.com/jsthtlf/usql/stmt"
 	ustyles "github.com/jsthtlf/usql/styles"
 	"github.com/jsthtlf/usql/text"
 	"github.com/xo/dburl"
 	"github.com/xo/dburl/passfile"
-	"github.com/xo/echartsgoja"
-	"github.com/xo/resvg"
 	"github.com/xo/tblfmt"
 )
 
@@ -146,12 +143,6 @@ func (h *Handler) Run() error {
 	stdout, stderr, iactive := h.l.Stdout(), h.l.Stderr(), h.l.Interactive()
 	// display welcome info
 	if iactive && env.Get("QUIET") == "off" {
-		// logo
-		if typ := env.TermGraphics(); typ.Available() {
-			if err := typ.Encode(stdout, text.Logo); err != nil {
-				return err
-			}
-		}
 		// welcome text
 		fmt.Fprintln(stdout, text.WelcomeDesc)
 		fmt.Fprintln(stdout)
@@ -452,10 +443,6 @@ func (h *Handler) Execute(ctx context.Context, w io.Writer, opt metacmd.Option, 
 		f = h.doExecExec
 	case metacmd.ExecSet:
 		f = h.doExecSet
-	case metacmd.ExecWatch:
-		f = h.doExecWatch
-	case metacmd.ExecChart:
-		f = h.doExecChart
 	}
 	if err = drivers.WrapErr(h.u.Driver, f(ctx, w, opt, prefix, sqlstr, qtyp, bind)); err != nil {
 		if forceTrans {
@@ -761,7 +748,7 @@ func (h *Handler) Highlight(w io.Writer, buf string) error {
 //
 // If there is only one parameter, and it is not a well formatted URL, but
 // appears to be a file on disk, then an attempt will be made to open it with
-// an appropriate driver (mysql, postgres, sqlite3) depending on the type (unix
+// an appropriate driver (mysql, postgres) depending on the type (unix
 // domain socket, directory, or regular file, respectively).
 func (h *Handler) Open(ctx context.Context, params ...string) error {
 	if len(params) == 0 || params[0] == "" {
@@ -1057,82 +1044,6 @@ func (h *Handler) doExecWatch(ctx context.Context, w io.Writer, opt metacmd.Opti
 	}
 }
 
-// doExecChart executes a single query against the database, displaying its output as a chart.
-func (h *Handler) doExecChart(ctx context.Context, w io.Writer, opt metacmd.Option, prefix, sqlstr string, qtyp bool, bind []interface{}) error {
-	stdout, _, _ := h.l.Stdout(), h.l.Stderr(), h.l.Interactive()
-	typ := env.TermGraphics()
-	if !typ.Available() {
-		return text.ErrGraphicsNotSupported
-	}
-	if _, ok := opt.Params["help"]; ok {
-		fmt.Fprintln(stdout, text.ChartUsage)
-		return nil
-	}
-	cfg, err := charts.ParseArgs(opt.Params)
-	if err != nil {
-		return err
-	}
-	start := time.Now()
-	// query
-	rows, err := h.DB().QueryContext(ctx, sqlstr, bind...)
-	if err != nil {
-		return err
-	}
-	// get cols
-	cols, err := drivers.Columns(h.u, rows)
-	if err != nil {
-		return err
-	}
-	// process row(s)
-	transposed := make([][]string, len(cols))
-	clen, tfmt := len(cols), env.Vars().PrintTimeFormat()
-	for rows.Next() {
-		row, err := h.scan(rows, clen, tfmt)
-		if err != nil {
-			return err
-		}
-		for i := range row {
-			transposed[i] = append(transposed[i], row[i])
-		}
-	}
-	// display
-	c, err := charts.MakeChart(cfg, cols, transposed)
-	if err != nil {
-		return err
-	}
-	data, err := c.ToEcharts()
-	if err != nil {
-		return err
-	}
-	echarts := echartsgoja.New(echartsgoja.WithWidthHeight(cfg.W, cfg.H))
-	res, err := echarts.RenderOptions(ctx, data)
-	if err != nil {
-		return err
-	}
-	if cfg.File != "" {
-		fmt.Println("writing to", cfg.File)
-		return os.WriteFile(cfg.File, []byte(res), 0o644)
-	}
-	img, err := resvg.Render([]byte(res), resvg.WithBackground(cfg.Background))
-	if err != nil {
-		return err
-	}
-	if err := typ.Encode(stdout, img); err != nil {
-		return err
-	}
-	if h.timing {
-		d := time.Since(start)
-		s := text.TimingDesc
-		v := []interface{}{float64(d.Microseconds()) / 1000}
-		if d > 1*time.Second {
-			s += " (%v)"
-			v = append(v, d.Round(1*time.Millisecond))
-		}
-		fmt.Fprintln(h.l.Stdout(), fmt.Sprintf(s, v...))
-	}
-	return nil
-}
-
 // doExecSingle executes a single query against the database based on its query type.
 func (h *Handler) doExecSingle(ctx context.Context, w io.Writer, opt metacmd.Option, prefix, sqlstr string, qtyp bool, bind []interface{}) error {
 	// exec or query
@@ -1249,8 +1160,6 @@ func (h *Handler) doQuery(ctx context.Context, w io.Writer, opt metacmd.Option, 
 			}
 			w = pipe
 		}
-	} else if opt.Exec != metacmd.ExecWatch {
-		params["pager_cmd"] = env.Get("PAGER")
 	}
 	// set up column type config
 	var extra []tblfmt.Option
