@@ -357,14 +357,6 @@ func (v *Variables) GetConn(name string) ([]string, bool) {
 	return slices.Clone(vals), true
 }
 
-// DumpConn dumps the connection variables to w.
-func (v *Variables) DumpConn(w io.Writer) error {
-	for _, k := range slices.Sorted(maps.Keys(v.conn)) {
-		fmt.Fprintln(w, k, "=", Quote(strings.Join(v.conn[k], " ")))
-	}
-	return nil
-}
-
 // timeConsts are well known time consts.
 var timeConsts = map[string]string{
 	"ANSIC":       time.ANSIC,

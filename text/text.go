@@ -23,8 +23,6 @@ var (
 	QuitPrefix            = `quit`
 	ExitPrefix            = `exit`
 	WelcomeDesc           = `Type "` + HelpPrefix + `" for help.`
-	QueryBufferEmpty      = `Query buffer is empty.`
-	QueryBufferReset      = `Query buffer reset (cleared).`
 	InvalidCommand        = `Invalid command \%s. Try \? for help.`
 	ExtraArgumentIgnored  = `\%s: extra argument %q ignored`
 	MissingRequiredArg    = `\%s: missing required argument`

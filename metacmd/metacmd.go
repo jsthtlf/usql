@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io"
 	"os/user"
+	"slices"
 	"strings"
 	"time"
 
@@ -86,14 +87,19 @@ func Dump(w io.Writer, hidden bool) error {
 		}
 	}
 	for i, s := range sections {
-		if i != 0 {
-			fmt.Fprintln(w)
+		hasItem := slices.ContainsFunc(descs[i], func(d desc) bool {
+			return (!d.Hidden && !d.Deprecated) || hidden
+		})
+		if hasItem {
+			fmt.Fprintln(w, s)
 		}
-		fmt.Fprintln(w, s)
 		for _, desc := range descs[i] {
 			if (!desc.Hidden && !desc.Deprecated) || hidden {
 				_, _ = fmt.Fprintf(w, "  \\%- *s  %s\n", n, desc.Name+" "+desc.Params, wrap(desc.Desc, 95, n+5))
 			}
+		}
+		if hasItem {
+			fmt.Fprintln(w)
 		}
 	}
 	return nil
@@ -239,8 +245,6 @@ const (
 	ExecSet
 	// ExecExec indicates execution and executing the resulting rows (\gexec).
 	ExecExec
-	// ExecCrosstab indicates execution using crosstabview (\crosstabview).
-	ExecCrosstab
 )
 
 // desc wraps a meta command description.

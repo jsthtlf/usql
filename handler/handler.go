@@ -1170,14 +1170,6 @@ func (h *Handler) doQuery(ctx context.Context, w io.Writer, opt metacmd.Option, 
 		extra = append(extra, tblfmt.WithUseColumnTypes(true))
 	}
 	resultSet := tblfmt.ResultSet(rows)
-	// wrap query with crosstab
-	if opt.Exec == metacmd.ExecCrosstab {
-		var err error
-		if resultSet, err = tblfmt.NewCrosstabView(rows, append(extra, tblfmt.WithParams(opt.Crosstab...))...); err != nil {
-			return err
-		}
-		extra = nil
-	}
 	if drivers.LowerColumnNames(h.u) {
 		params["lower_column_names"] = "true"
 	}
