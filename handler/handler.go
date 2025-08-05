@@ -141,12 +141,6 @@ func (h *Handler) SetSingleLineMode(singleLineMode bool) {
 // Run executes queries and commands.
 func (h *Handler) Run() error {
 	stdout, stderr, iactive := h.l.Stdout(), h.l.Stderr(), h.l.Interactive()
-	// display welcome info
-	if iactive && env.Get("QUIET") == "off" {
-		// welcome text
-		fmt.Fprintln(stdout, text.WelcomeDesc)
-		fmt.Fprintln(stdout)
-	}
 	var cmd string
 	var paramstr string
 	var err error
@@ -188,7 +182,6 @@ func (h *Handler) Run() error {
 				case "help":
 					s = text.HelpDescShort
 					if first {
-						s = text.HelpDesc
 						h.buf.Reset(nil)
 					}
 				case "quit", "exit":
@@ -1004,14 +997,6 @@ func (h *Handler) Version(ctx context.Context) error {
 	if h.db == nil {
 		return text.ErrNotConnected
 	}
-	ver, err := drivers.Version(ctx, h.u, h.DB())
-	switch {
-	case err != nil:
-		ver = fmt.Sprintf("<unknown, error: %v>", err)
-	case ver == "":
-		ver = "<unknown>"
-	}
-	h.Print(text.ConnInfo, h.u.Driver, ver)
 	return nil
 }
 

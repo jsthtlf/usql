@@ -22,18 +22,15 @@ var (
 	HelpPrefix            = `help`
 	QuitPrefix            = `quit`
 	ExitPrefix            = `exit`
-	WelcomeDesc           = `Type "` + HelpPrefix + `" for help.`
 	InvalidCommand        = `Invalid command \%s. Try \? for help.`
 	ExtraArgumentIgnored  = `\%s: extra argument %q ignored`
 	MissingRequiredArg    = `\%s: missing required argument`
-	ConnInfo              = `Connected with driver %s (%s)`
 	EnterPassword         = `Enter password: `
 	EnterPreviousPassword = `Enter previous password: `
 	PasswordsDoNotMatch   = `Passwords do not match, trying again ...`
 	NewPassword           = `Enter new password: `
 	ConfirmPassword       = `Confirm password: `
 	CouldNotSetVariable   = `could not set variable %q`
-	HelpDesc              string
 	HelpDescShort         = `Use \? for help or press control-C to clear the input buffer.`
 	HelpBanner            = `You are using ` + CommandName + ", " + Banner + `.`
 	HelpCommandPrefix     = `Type:  `
@@ -72,9 +69,6 @@ func init() {
 	for i, h := range HelpCommands {
 		cmds[i] = `\` + h[0] + " " + h[1]
 	}
-	HelpDesc = HelpBanner +
-		"\n" + HelpCommandPrefix +
-		strings.Join(cmds, "\n"+strings.Repeat(" ", len(HelpCommandPrefix)))
 }
 
 var spaceRE = regexp.MustCompile(`\s+`)
