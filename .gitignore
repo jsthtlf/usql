@@ -6,7 +6,6 @@
 /*.txt
 
 .usql_history*
-.[a-f0-9]*
 
 *.ini
 *.csv
@@ -22,3 +21,5 @@
 
 .vscode/
 .idea
+# Added by goreleaser init:
+dist/

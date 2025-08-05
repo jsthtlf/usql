@@ -26,59 +26,24 @@ var (
 	InvalidCommand        = `Invalid command \%s. Try \? for help.`
 	ExtraArgumentIgnored  = `\%s: extra argument %q ignored`
 	MissingRequiredArg    = `\%s: missing required argument`
-	AvailableDrivers      = `Available Drivers:`
 	ConnInfo              = `Connected with driver %s (%s)`
 	EnterPassword         = `Enter password: `
 	EnterPreviousPassword = `Enter previous password: `
 	PasswordsDoNotMatch   = `Passwords do not match, trying again ...`
 	NewPassword           = `Enter new password: `
 	ConfirmPassword       = `Confirm password: `
-	PasswordChangeFailed  = `\password for %q failed: %v`
 	CouldNotSetVariable   = `could not set variable %q`
 	HelpDesc              string
 	HelpDescShort         = `Use \? for help or press control-C to clear the input buffer.`
 	HelpBanner            = `You are using ` + CommandName + ", " + Banner + `.`
 	HelpCommandPrefix     = `Type:  `
 	HelpCommands          = [][]string{
-		//{`h`, `for help with SQL commands`},
 		{`?`, `for help with ` + CommandName + ` commands`},
-		{`g`, `or terminate with semicolon to execute query`},
-		{`q`, `to quit`},
 	}
-	QuitDesc                = `Use \q to quit.`
-	UnknownFormatFieldName  = `unknown option: %s`
-	FormatFieldInvalid      = `unrecognized value %q for "%s"`
-	FormatFieldInvalidValue = `unrecognized value %q for "%s": %s expected`
-	FormatFieldNameSetMap   = map[string]string{
-		`border`:                   `Border style is %d.`,
-		`columns`:                  `Target width is %d.`,
-		`expanded`:                 `Expanded display is %s.`,
-		`expanded_auto`:            `Expanded display is used automatically.`,
-		`fieldsep`:                 `Field separator is %q.`,
-		`fieldsep_zero`:            `Field separator is zero byte.`,
-		`footer`:                   `Default footer is %s.`,
-		`format`:                   `Output format is %s.`,
-		`linestyle`:                `Line style is %s.`,
-		`locale`:                   `Locale is %q.`,
-		`null`:                     `Null display is %q.`,
-		`numericlocale`:            `Locale-adjusted numeric output is %s.`,
-		`pager`:                    `Pager usage is %s.`,
-		`pager_min_lines`:          `Pager won't be used for less than %d line(s).`,
-		`recordsep`:                `Field separator is %q.`,
-		`recordsep_zero`:           `Record separator is zero byte.`,
-		`tableattr`:                `Table attributes are %q.`,
-		`time`:                     `Time display is %s.`,
-		`title`:                    `Title is %q.`,
-		`tuples_only`:              `Tuples only is %s.`,
-		`unicode_border_linestyle`: `Unicode border line style is %q.`,
-		`unicode_column_linestyle`: `Unicode column line style is %q.`,
-		`unicode_header_linestyle`: `Unicode header line style is %q.`,
-	}
-	FormatFieldNameUnsetMap = map[string]string{
-		`tableattr`: `Table attributes unset.`,
-		`title`:     `Title is unset.`,
-	}
-	TimingSet                 = `Timing is %s.`
+	QuitDesc                  = `Use \q to quit.`
+	UnknownFormatFieldName    = `unknown option: %s`
+	FormatFieldInvalid        = `unrecognized value %q for "%s"`
+	FormatFieldInvalidValue   = `unrecognized value %q for "%s": %s expected`
 	TimingDesc                = `Time: %0.3f ms`
 	InvalidValue              = `invalid -%s value %q: %s`
 	NotSupportedByDriver      = `%s not supported by %s driver`
@@ -99,19 +64,6 @@ Arguments:
 Flags:
 {{.LocalFlags.FlagUsages | trimTrailingWhitespaces}}
 `
-	ChartUsage = `\chart: create and display charts from SQL data
-usage: \chart [opts]
-
-available options:
-
-help
-title    [title]     chart title
-subtitle [subtitle]  chart subtitle
-size     NxN         chart size (width x height)
-bg       [color]     chart background color
-type     [bar|line]  chart type
-prec     [num]       data decimal precision
-file     [path]      write chart to file (svg)`
 )
 
 func init() {

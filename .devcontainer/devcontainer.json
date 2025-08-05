@@ -1,0 +1,21 @@
+{
+  "name": "usql",
+
+    "build": {
+      context: "..",
+      dockerfile: "../Dockerfile",
+      "target": "dev-usql"
+    },
+
+  "runArgs": [
+    "--name", "usql",
+  ],
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mhutchie.git-graph"
+      ]
+    }
+  }
+}
