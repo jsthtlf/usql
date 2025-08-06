@@ -43,6 +43,19 @@ func Help(p *Params) error {
 	return nil
 }
 
+// Reset is a Query Buffer meta command (\r, \reset). Clears (resets) the query
+// buffer.
+//
+// Descs:
+//
+//	r	reset (clear) the query buffer
+//	reset
+func Reset(p *Params) error {
+	p.Handler.Reset(nil)
+	p.Handler.Print(text.QueryBufferReset)
+	return nil
+}
+
 // Transact is a Transaction meta command (\begin, \commit, \rollback). Begins,
 // commits, or aborts (rollback) the current database transaction on the open
 // database connection.

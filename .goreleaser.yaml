@@ -5,6 +5,8 @@ before:
     - go mod tidy
 
 builds:
+  - ldflags:
+      - -w -s -X github.com/jsthtlf/usql/text.CommandVersion={{.Version}}
   - goos:
       - linux
       - darwin

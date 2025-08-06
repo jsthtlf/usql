@@ -7,6 +7,7 @@ import (
 // sections are the command description sections.
 var sections = []string{
 	"Help",
+	"Query Buffer",
 	"Informational",
 	"Transaction",
 }
@@ -22,6 +23,11 @@ func init() {
 		// Help
 		{
 			{Help, `?`, `[commands]`, `show help on ` + text.CommandName + `'s meta (backslash) commands`, true, false},
+		},
+		// Query Buffer
+		{
+			{Reset, `r`, ``, `reset (clear) the query buffer`, false, false},
+			{Reset, `reset`, ``, `alias for \r`, true, false},
 		},
 		// Informational
 		{

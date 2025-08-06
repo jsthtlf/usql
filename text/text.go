@@ -22,6 +22,7 @@ var (
 	HelpPrefix            = `help`
 	QuitPrefix            = `quit`
 	ExitPrefix            = `exit`
+	QueryBufferReset      = `Query buffer reset (cleared).`
 	InvalidCommand        = `Invalid command \%s. Try \? for help.`
 	ExtraArgumentIgnored  = `\%s: extra argument %q ignored`
 	MissingRequiredArg    = `\%s: missing required argument`
